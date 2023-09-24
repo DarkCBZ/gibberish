@@ -4,7 +4,11 @@ function englishToEncode(str) {
   let encodedStr = "";
   for (let i = 0; i < str.length; i++) {
     let char = str.charAt(i);
-    encodedStr += key[char] || char;
+    let translatedChar = key[char.toLowerCase()];
+    if (char.toUpperCase() === char) {
+      translatedChar = translatedChar.toUpperCase();
+    }
+    encodedStr += translatedChar || char;
   }
   return encodedStr;
 }
@@ -14,9 +18,13 @@ function encodeToEnglish(str) {
   for (let i = 0; i < str.length; i++) {
     let char = str.charAt(i);
     let translatedChar = null;
+
     for (let encodedChar in key) {
-      if (key[encodedChar] === char) {
+      if (key[encodedChar].toLowerCase() === char.toLowerCase()) {
         translatedChar = encodedChar;
+        if (char.toUpperCase() === char) {
+          translatedChar = translatedChar.toUpperCase();
+        }
         break;
       }
     }
@@ -24,6 +32,8 @@ function encodeToEnglish(str) {
   }
   return decodedStr;
 }
+
+
 
 const englishInput = document.getElementById("englishInput");
 const gibberishInput = document.getElementById("gibberishInput");
