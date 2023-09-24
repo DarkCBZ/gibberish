@@ -1,14 +1,37 @@
-let key = { a: "s", b: "n", c: "v", d: "f", e: "r", f: "g", g: "h", h: "j", i: "o", j: "k", k: "l", l: ";", m: ",", n: "m", o: "p", p: "[", q: "w", r: "t", s: "d", t: "y", u: "i", v: "b", w: "e", x: "c", y: "u", z: "x" };
+let key = {
+  a: "s", A: "S",
+  b: "n", B: "N",
+  c: "v", C: "V",
+  d: "f", D: "F",
+  e: "r", E: "R",
+  f: "g", F: "G",
+  g: "h", G: "H",
+  h: "j", H: "J",
+  i: "o", I: "O",
+  j: "k", J: "K",
+  k: "l", K: "L",
+  l: ";", L: ";",
+  m: ",", M: ",",
+  n: "m", N: "M",
+  o: "p", O: "P",
+  p: "[", P: "[",
+  q: "w", Q: "W",
+  r: "t", R: "T",
+  s: "d", S: "D",
+  t: "y", T: "Y",
+  u: "i", U: "I",
+  v: "b", V: "B",
+  w: "e", W: "E",
+  x: "c", X: "C",
+  y: "u", Y: "U",
+  z: "x", Z: "X"
+};
 
 function englishToEncode(str) {
   let encodedStr = "";
   for (let i = 0; i < str.length; i++) {
     let char = str.charAt(i);
-    let translatedChar = key[char.toLowerCase()];
-    if (char.toUpperCase() === char) {
-      translatedChar = translatedChar.toUpperCase();
-    }
-    encodedStr += translatedChar || char;
+    encodedStr += key[char] || char;
   }
   return encodedStr;
 }
@@ -18,13 +41,9 @@ function encodeToEnglish(str) {
   for (let i = 0; i < str.length; i++) {
     let char = str.charAt(i);
     let translatedChar = null;
-
     for (let encodedChar in key) {
-      if (key[encodedChar].toLowerCase() === char.toLowerCase()) {
+      if (key[encodedChar] === char) {
         translatedChar = encodedChar;
-        if (char.toUpperCase() === char) {
-          translatedChar = translatedChar.toUpperCase();
-        }
         break;
       }
     }
@@ -32,8 +51,6 @@ function encodeToEnglish(str) {
   }
   return decodedStr;
 }
-
-
 
 const englishInput = document.getElementById("englishInput");
 const gibberishInput = document.getElementById("gibberishInput");
